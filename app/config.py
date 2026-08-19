@@ -25,8 +25,16 @@ IEM_ASOS_URL = os.getenv(
     "IEM_ASOS_URL",
     "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py",
 )
+OBS_NETWORKS = tuple(
+    x.strip()
+    for x in os.getenv("OBS_NETWORKS", "LA_ASOS,MS_ASOS").split(",")
+    if x.strip()
+)
 
+# NOAA NODD's public URMA archive is available from 2019-present.  Prefer it
+# for retrospective work; retain operational NOMADS endpoints as fallbacks.
 DEFAULT_URMA_BASES = (
+    "https://noaa-urma-pds.s3.amazonaws.com",
     "https://nomads.ncep.noaa.gov/pub/data/nccf/com/urma/prod",
     "https://nomads.ncep.noaa.gov/pub/data/nccf/com/urma/v2.10",
 )
@@ -42,5 +50,5 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 HTTP_TIMEOUT = float(os.getenv("HTTP_TIMEOUT", "45"))
 USER_AGENT = os.getenv(
     "HTTP_USER_AGENT",
-    "WFO-LIX-Heat-Verification/1.0 (https://github.com/mefferso/Heat_verification)",
+    "WFO-LIX-Heat-Verification/1.1 (https://github.com/mefferso/Heat_verification)",
 )
