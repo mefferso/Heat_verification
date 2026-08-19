@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: lix-heat-verification
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: CACHE_DIR
+        value: /tmp/heat-verification-cache
