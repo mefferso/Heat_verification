@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WFO LIX Heat Verification</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<main class="shell">
+  <aside class="sidebar">
+    <header class="brand"><div class="eyebrow">WFO NEW ORLEANS / BATON ROUGE</div><h1>Heat Verification</h1><p>Retrospective heat-product verification with URMA + observed ASOS/AWOS support.</p></header>
+    <section class="criteria-grid"><div class="criterion advisory"><span>Heat Advisory</span><strong>≥108°F</strong></div><div class="criterion warning"><span>Extreme Heat Warning</span><strong>≥113°F</strong></div></section>
+    <section class="controls card"><label for="monthInput">Month to verify</label><div class="control-row"><input id="monthInput" type="month" /><button id="analyzeBtn" type="button">Analyze</button></div><div id="jobWrap" class="job hidden"><div class="job-line"><span id="jobMessage">Starting…</span><span id="jobPct">0%</span></div><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div></div><div id="errorBox" class="error hidden"></div></section>
+    <section id="summary" class="summary-grid hidden"><div class="metric"><span>Products</span><strong id="sumEvents">—</strong></div><div class="metric"><span>Zone entries</span><strong id="sumZones">—</strong></div><div class="metric"><span>URMA verified</span><strong id="sumUrma">—</strong></div><div class="metric"><span>Obs verified</span><strong id="sumObs">—</strong></div></section>
+    <section id="resultsControls" class="card hidden"><label for="eventSelect">Heat product</label><select id="eventSelect"></select><div class="segmented"><button class="mode-btn active" data-mode="urma">URMA</button><button class="mode-btn" data-mode="obs">Observed</button></div><a id="downloadCsv" class="download" href="#">Download CSV</a></section>
+    <section id="eventDetail" class="event-detail hidden"></section>
+    <footer class="sources"><div><span class="dot official"></span> Latest NWS LIX public forecast zones</div><div><span class="dot urma"></span> NCEP URMA 2-m T/Td analysis</div><div><span class="dot obs"></span> IEM ASOS/AWOS archive</div><p>URMA is an analysis, not a raw station observation. Missing upstream hours are shown as missing—not silently replaced.</p></footer>
+  </aside>
+  <section class="map-panel"><div id="map"></div><div class="map-topbar"><div id="mapTitle">Current WFO LIX forecast zones</div><div id="zoneVersion" class="version-pill">Loading zones…</div></div><div class="legend"><div><span class="swatch verified"></span>Verified</div><div><span class="swatch missed"></span>Below criterion</div><div><span class="swatch unavailable"></span>No value / no station</div><div><span class="swatch outside"></span>Not in selected product</div></div></section>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/static/app.js"></script>
+</body></html>
